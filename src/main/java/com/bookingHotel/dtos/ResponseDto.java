@@ -1,5 +1,7 @@
 package com.bookingHotel.dtos;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -17,6 +19,7 @@ import lombok.Setter;
 public class ResponseDto<T> {
   private Integer status;
   private String message;
+  private List<String> errors;
   private T data;
 
   public static <T> ResponseEntity<ResponseDto<T>> created(T data) {
@@ -24,6 +27,29 @@ public class ResponseDto<T> {
         .status(201)
         .message("Created successfully")
         .data(data)
+        .build());
+  }
+
+  public static <T> ResponseEntity<ResponseDto<T>> badRequest(List<String> errors) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseDto.<T>builder()
+        .status(400)
+        .message("Bad Request")
+        .errors(errors)
+        .data(null)
+        .build());
+  }
+
+  public static <T> ResponseEntity<ResponseDto<T>> unauthorized() {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseDto.<T>builder()
+        .status(401)
+        .message("Unauthorized")
+        .build());
+  }
+
+  public static <T> ResponseEntity<ResponseDto<T>> forbidden() {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseDto.<T>builder()
+        .status(403)
+        .message("Forbidden")
         .build());
   }
 

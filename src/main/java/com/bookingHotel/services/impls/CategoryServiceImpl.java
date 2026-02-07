@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     this.categoryRepository.delete(categoryEntity);
 
-    return ResponseDto.success(new Object());
+    return ResponseDto.success(null);
   }
 
   @Override

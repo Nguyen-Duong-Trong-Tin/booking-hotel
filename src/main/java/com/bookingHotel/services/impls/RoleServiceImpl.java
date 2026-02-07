@@ -63,7 +63,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     this.roleRepository.delete(roleEntity);
-    return ResponseDto.success("Role deleted successfully");
+    return ResponseDto.success(null);
   }
 
   @Override

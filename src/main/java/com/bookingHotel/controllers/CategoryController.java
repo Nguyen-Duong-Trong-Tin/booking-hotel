@@ -3,6 +3,7 @@ package com.bookingHotel.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bookingHotel.annotations.Auth;
 import com.bookingHotel.dtos.ResponseDto;
 import com.bookingHotel.dtos.ResponseSpecification;
 import com.bookingHotel.dtos.categories.CategoryCreateDto;
@@ -30,17 +31,20 @@ public class CategoryController {
   private CategoryService categoryService;
 
   @PostMapping()
+  @Auth({ "Admin" })
   public ResponseEntity<ResponseDto<CategoryResponseDto>> create(@Valid @RequestBody CategoryCreateDto body) {
     return this.categoryService.create(body);
   }
 
   @PatchMapping("/{id}")
+  @Auth({ "Admin" })
   public ResponseEntity<ResponseDto<CategoryResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody CategoryUpdateDto body) {
     return this.categoryService.update(id, body);
   }
 
   @DeleteMapping("/{id}")
+  @Auth({ "Admin" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.categoryService.delete(id);
   }
