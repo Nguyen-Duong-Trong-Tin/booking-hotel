@@ -1,4 +1,4 @@
-package com.bookingHotel.dtos.roles;
+package com.bookingHotel.dtos.amenities;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -12,10 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class RoleUpdateDto {
-  @Size(max = 30, message = "Name maximum length is 30 characters")
+public class AmenityUpdateDto {
+  @Size(max = 100, message = "Name maximum length is 100 characters")
   private String name;
 
-  @Size(max = 255, message = "Description maximum length is 255 characters")
-  private String description;
+  @Size(max = 255, message = "Icon url maximum length is 255 characters")
+  private String iconUrl;
 }

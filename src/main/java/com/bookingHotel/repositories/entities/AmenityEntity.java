@@ -2,8 +2,6 @@ package com.bookingHotel.repositories.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,24 +16,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "amenities")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class RoleEntity {
+public class AmenityEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false, unique = true, length = 50)
+  @Column(nullable = false, length = 100)
   private String name;
 
-  @Column(length = 255)
-  private String description;
+  @Column(name = "iconUrl")
+  private String iconUrl;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "role")
-  private List<UserEntity> users;
+  @OneToMany(mappedBy = "amenity")
+  private List<RoomAmenityEntity> roomAmenities;
 }
