@@ -56,4 +56,7 @@ public class RoomEntity {
 
   @OneToMany(mappedBy = "room")
   private List<BookingEntity> bookings;
+
+  @OneToMany(mappedBy = "room")
+  private List<RoomImageEntity> roomImages;
 }
