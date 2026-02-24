@@ -12,4 +12,10 @@ import com.bookingHotel.dtos.roomImages.RoomImageResponseDto;
 public interface RoomImageService {
   ResponseEntity<ResponseDto<List<RoomImageResponseDto>>> createAll(
       RoomImageCreateAllDto roomImageCreateAllDto, List<MultipartFile> images);
+
+  ResponseEntity<ResponseDto<RoomImageResponseDto>> setPresentative(Long id);
+
+  ResponseEntity<ResponseDto<Object>> delete(Long id);
+
+  void deleteByRoomId(Long roomId);
 }

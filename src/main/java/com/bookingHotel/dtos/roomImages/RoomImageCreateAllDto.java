@@ -15,4 +15,6 @@ import lombok.Setter;
 public class RoomImageCreateAllDto {
   @NotNull(message = "Room id is required")
   private Long roomId;
+
+  private Integer presentativeIndex;
 }

@@ -1,8 +1,10 @@
 package com.bookingHotel.dtos.rooms;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.bookingHotel.dtos.categories.CategoryResponseDto;
+import com.bookingHotel.dtos.roomImages.RoomImageResponseDto;
 import com.bookingHotel.repositories.enums.RoomStatus;
 
 import lombok.AllArgsConstructor;
@@ -23,4 +25,5 @@ public class RoomResponseDto {
   private Integer capacity;
   private RoomStatus status;
   private CategoryResponseDto category;
+  private List<RoomImageResponseDto> roomImages;
 }

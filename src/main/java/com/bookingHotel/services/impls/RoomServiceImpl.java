@@ -21,6 +21,7 @@ import com.bookingHotel.repositories.RoomRepository;
 import com.bookingHotel.repositories.entities.CategoryEntity;
 import com.bookingHotel.repositories.entities.RoomEntity;
 import com.bookingHotel.services.RoomService;
+import com.bookingHotel.services.RoomImageService;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -32,6 +33,9 @@ public class RoomServiceImpl implements RoomService {
 
   @Autowired
   private CategoryRepository categoryRepository;
+
+  @Autowired
+  private RoomImageService roomImageService;
 
   @Override
   public ResponseEntity<ResponseDto<RoomResponseDto>> create(RoomCreateDto roomCreateDto) {
@@ -90,6 +94,7 @@ public class RoomServiceImpl implements RoomService {
       return ResponseDto.notFound("Room not found");
     }
 
+    this.roomImageService.deleteByRoomId(id);
     this.roomRepository.delete(roomEntity);
     return ResponseDto.success(null);
   }
