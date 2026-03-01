@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bookingHotel.converters.RoomConverter;
 import com.bookingHotel.dtos.ResponseDto;
@@ -88,6 +89,7 @@ public class RoomServiceImpl implements RoomService {
   }
 
   @Override
+  @Transactional
   public ResponseEntity<ResponseDto<Object>> delete(Long id) {
     RoomEntity roomEntity = this.roomRepository.findById(id).orElse(null);
     if (roomEntity == null) {
