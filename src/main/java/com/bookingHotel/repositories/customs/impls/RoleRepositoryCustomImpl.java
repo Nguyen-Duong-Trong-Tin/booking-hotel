@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
 
 import com.bookingHotel.dtos.roles.RoleFindDto;
 import com.bookingHotel.repositories.customs.RoleRepositoryCustom;
@@ -12,6 +13,7 @@ import com.bookingHotel.utils.QueryUtil;
 
 import jakarta.persistence.criteria.Predicate;
 
+@Repository
 public class RoleRepositoryCustomImpl implements RoleRepositoryCustom {
   public Specification<RoleEntity> hasCriteria(RoleFindDto query) {
     return (root, criteriaQuery, criteriaBuilder) -> {

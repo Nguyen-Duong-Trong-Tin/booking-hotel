@@ -68,4 +68,13 @@ public class ResponseDto<T> {
         .data(data)
         .build());
   }
+
+  public static <T> ResponseEntity<ResponseDto<T>> tooManyRequests(List<String> errors) {
+    return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(ResponseDto.<T>builder()
+        .status(429)
+        .message("Too Many Requests")
+        .errors(errors)
+        .data(null)
+        .build());
+  }
 }
