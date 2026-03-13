@@ -24,6 +24,7 @@ import com.bookingHotel.repositories.entities.BookingEntity;
 import com.bookingHotel.repositories.entities.RoomEntity;
 import com.bookingHotel.repositories.entities.UserEntity;
 import com.bookingHotel.services.BookingService;
+import com.bookingHotel.services.EmailService;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -38,6 +39,9 @@ public class BookingServiceImpl implements BookingService {
 
   @Autowired
   private RoomRepository roomRepository;
+
+  @Autowired
+  private EmailService emailService;
 
   @Override
   public ResponseEntity<ResponseDto<BookingResponseDto>> create(BookingCreateDto bookingCreateDto) {
@@ -60,6 +64,12 @@ public class BookingServiceImpl implements BookingService {
     bookingEntity.setRoom(roomEntity);
 
     bookingEntity = this.bookingRepository.save(bookingEntity);
+
+    try {
+      this.emailService.sendBookingConfirmation(bookingEntity);
+    } catch (Exception ex) {
+      System.out.println("Failed to send booking email: " + ex.getMessage());
+    }
 
     BookingResponseDto bookingResponseDto = this.bookingConverter.toBookingResponseDto(bookingEntity);
 
