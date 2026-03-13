@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
   @Autowired
   private JavaMailSender mailSender;
 
-  @Value("${booking.mail.from:${spring.mail.username}}");
+  @Value("${booking.mail.from:${spring.mail.username}}")
   private String fromAddress;
 
   @Override
