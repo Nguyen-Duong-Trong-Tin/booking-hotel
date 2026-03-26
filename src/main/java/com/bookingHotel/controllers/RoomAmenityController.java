@@ -32,21 +32,21 @@ public class RoomAmenityController {
   private RoomAmenityService roomAmenityService;
 
   @PostMapping
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<RoomAmenityResponseDto>> create(
       @Valid @RequestBody RoomAmenityCreateDto roomAmenityCreateDto) {
     return this.roomAmenityService.create(roomAmenityCreateDto);
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<RoomAmenityResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody RoomAmenityUpdateDto roomAmenityUpdateDto) {
     return this.roomAmenityService.update(id, roomAmenityUpdateDto);
   }
 
   @DeleteMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.roomAmenityService.delete(id);
   }

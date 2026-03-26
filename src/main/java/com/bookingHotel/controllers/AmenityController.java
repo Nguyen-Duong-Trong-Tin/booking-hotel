@@ -32,21 +32,21 @@ public class AmenityController {
   private AmenityService amenityService;
 
   @PostMapping
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<AmenityResponseDto>> create(
       @Valid @RequestBody AmenityCreateDto amenityCreateDto) {
     return this.amenityService.create(amenityCreateDto);
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<AmenityResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody AmenityUpdateDto amenityUpdateDto) {
     return this.amenityService.update(id, amenityUpdateDto);
   }
 
   @DeleteMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.amenityService.delete(id);
   }

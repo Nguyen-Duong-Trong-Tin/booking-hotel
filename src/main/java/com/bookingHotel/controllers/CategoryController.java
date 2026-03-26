@@ -33,20 +33,20 @@ public class CategoryController {
   private CategoryService categoryService;
 
   @PostMapping()
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<CategoryResponseDto>> create(@Valid @RequestBody CategoryCreateDto body) {
     return this.categoryService.create(body);
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<CategoryResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody CategoryUpdateDto body) {
     return this.categoryService.update(id, body);
   }
 
   @DeleteMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.categoryService.delete(id);
   }

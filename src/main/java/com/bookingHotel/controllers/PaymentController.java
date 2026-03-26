@@ -32,20 +32,20 @@ public class PaymentController {
   private PaymentService paymentService;
 
   @PostMapping
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<PaymentResponseDto>> create(@Valid @RequestBody PaymentCreateDto paymentCreateDto) {
     return this.paymentService.create(paymentCreateDto);
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<PaymentResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody PaymentUpdateDto paymentUpdateDto) {
     return this.paymentService.update(id, paymentUpdateDto);
   }
 
   @DeleteMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.paymentService.delete(id);
   }

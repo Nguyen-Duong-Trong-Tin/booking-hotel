@@ -53,7 +53,7 @@ public class UserController {
 	}
 
 	@PatchMapping("/me")
-	@Auth({ "User", "Admin" })
+	@Auth({ "User", "Admin", "Employee" })
 	public ResponseEntity<ResponseDto<UserResponseDto>> updateProfile(
 			@Valid @RequestBody UserProfileUpdateDto body) {
 		String authHeader = request.getHeader("Authorization");

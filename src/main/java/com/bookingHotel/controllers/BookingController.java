@@ -32,20 +32,20 @@ public class BookingController {
   private BookingService bookingService;
 
   @PostMapping
-  @Auth({ "Admin", "User" })
+  @Auth({ "Admin", "Employee", "User" })
   public ResponseEntity<ResponseDto<BookingResponseDto>> create(@Valid @RequestBody BookingCreateDto bookingCreateDto) {
     return this.bookingService.create(bookingCreateDto);
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<BookingResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody BookingUpdateDto bookingUpdateDto) {
     return this.bookingService.update(id, bookingUpdateDto);
   }
 
   @DeleteMapping("/{id}")
-  @Auth({ "Admin" })
+  @Auth({ "Admin", "Employee" })
   public ResponseEntity<ResponseDto<Object>> delete(@PathVariable Long id) {
     return this.bookingService.delete(id);
   }
