@@ -48,6 +48,9 @@ public class BookingEntity {
   @Column(nullable = false, length = 20)
   private BookingStatus status;
 
+  @Column(name = "paymentMethod", length = 50)
+  private String paymentMethod;
+
   @ManyToOne
   @JoinColumn(name = "userId", nullable = false)
   private UserEntity user;

@@ -38,5 +38,9 @@ public class BookingConverter {
     if (bookingUpdateDto.getStatus() != null) {
       bookingEntity.setStatus(bookingUpdateDto.getStatus());
     }
+
+    if (bookingUpdateDto.getPaymentMethod() != null) {
+      bookingEntity.setPaymentMethod(bookingUpdateDto.getPaymentMethod());
+    }
   }
 }

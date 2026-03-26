@@ -24,6 +24,10 @@ public class RoomUpdateDto {
 
   private Integer capacity;
 
+  private Double latitude;
+
+  private Double longitude;
+
   private RoomStatus status;
 
   private Long categoryId;

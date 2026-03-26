@@ -35,6 +35,14 @@ public class RoomConverter {
       roomEntity.setCapacity(roomUpdateDto.getCapacity());
     }
 
+    if (roomUpdateDto.getLatitude() != null) {
+      roomEntity.setLatitude(roomUpdateDto.getLatitude());
+    }
+
+    if (roomUpdateDto.getLongitude() != null) {
+      roomEntity.setLongitude(roomUpdateDto.getLongitude());
+    }
+
     if (roomUpdateDto.getStatus() != null) {
       roomEntity.setStatus(roomUpdateDto.getStatus());
     }

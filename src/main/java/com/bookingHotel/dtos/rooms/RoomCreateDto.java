@@ -29,6 +29,10 @@ public class RoomCreateDto {
   @NotNull(message = "Capacity is required")
   private Integer capacity;
 
+  private Double latitude;
+
+  private Double longitude;
+
   @NotNull(message = "Status is required")
   private RoomStatus status;
 

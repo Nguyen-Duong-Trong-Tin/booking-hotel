@@ -2,6 +2,8 @@ package com.bookingHotel.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,7 @@ import com.bookingHotel.services.RoomService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/rooms")
+@RequestMapping({ "/v1/rooms", "/rooms" })
 public class RoomController {
   @Autowired
   private RoomService roomService;
@@ -50,7 +52,7 @@ public class RoomController {
 
   @GetMapping
   public ResponseEntity<ResponseDto<ResponseSpecification<RoomResponseDto>>> find(RoomFindDto query,
-      Pageable pageable) {
+      @PageableDefault(sort = "id", direction = Direction.DESC) Pageable pageable) {
     return this.roomService.find(query, pageable);
   }
 

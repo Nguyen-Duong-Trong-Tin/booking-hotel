@@ -24,6 +24,7 @@ public class BookingResponseDto {
   private LocalDate checkOut;
   private BigDecimal totalPrice;
   private BookingStatus status;
+  private String paymentMethod;
   private UserResponseDto user;
   private RoomResponseDto room;
 }

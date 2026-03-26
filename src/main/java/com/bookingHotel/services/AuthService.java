@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import com.bookingHotel.dtos.ResponseDto;
 import com.bookingHotel.dtos.auths.AuthLoginDto;
 import com.bookingHotel.dtos.auths.AuthLoginResponseDto;
+import com.bookingHotel.dtos.auths.AuthGoogleResponseDto;
 import com.bookingHotel.dtos.auths.AuthRefreshTokenDto;
 import com.bookingHotel.dtos.auths.AuthRefreshTokenResponseDto;
 import com.bookingHotel.dtos.auths.AuthRegisterDto;
@@ -15,6 +16,14 @@ public interface AuthService {
       AuthRegisterDto authRegisterDto);
 
   ResponseEntity<ResponseDto<AuthLoginResponseDto>> login(AuthLoginDto authLoginDto);
+
+  String buildGoogleAuthorizeUrl();
+
+  AuthGoogleResponseDto handleGoogleCallback(String code);
+
+  String buildFrontendRedirect(AuthGoogleResponseDto authResponse);
+
+  String buildFrontendErrorRedirect(String error);
 
   ResponseEntity<ResponseDto<AuthRefreshTokenResponseDto>> refreshToken(AuthRefreshTokenDto authRefreshTokenDto);
 }

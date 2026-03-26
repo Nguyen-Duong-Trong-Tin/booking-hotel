@@ -30,6 +30,8 @@ public class BookingCreateDto {
   @NotNull(message = "Status is required")
   private BookingStatus status;
 
+  private String paymentMethod;
+
   @NotNull(message = "User is required")
   private Long userId;
 

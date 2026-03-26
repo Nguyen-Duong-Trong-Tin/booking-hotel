@@ -30,6 +30,10 @@ public class BookingRepositoryCustomImpl implements BookingRepositoryCustom {
         predicates.add(criteriaBuilder.equal(root.get("status"), query.getStatus()));
       }
 
+      if (query.getPaymentMethod() != null) {
+        predicates.add(criteriaBuilder.equal(root.get("paymentMethod"), query.getPaymentMethod()));
+      }
+
       if (query.getUserId() != null) {
         predicates.add(criteriaBuilder.equal(root.get("user").get("id"), query.getUserId()));
       }

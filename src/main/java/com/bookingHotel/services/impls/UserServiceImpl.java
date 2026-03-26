@@ -15,6 +15,7 @@ import com.bookingHotel.dtos.ResponseDto;
 import com.bookingHotel.dtos.ResponseSpecification;
 import com.bookingHotel.dtos.users.UserCreateDto;
 import com.bookingHotel.dtos.users.UserFindDto;
+import com.bookingHotel.dtos.users.UserProfileUpdateDto;
 import com.bookingHotel.dtos.users.UserResponseDto;
 import com.bookingHotel.dtos.users.UserUpdateDto;
 import com.bookingHotel.repositories.RoleRepository;
@@ -95,6 +96,38 @@ public class UserServiceImpl implements UserService {
     }
 
     this.userConverter.copyToUserEntity(body, userEntity);
+
+    userEntity = this.userRepository.save(userEntity);
+    UserResponseDto userResponseDto = this.userConverter.toUserResponseDto(userEntity);
+    return ResponseDto.success(userResponseDto);
+  }
+
+  @Override
+  public ResponseEntity<ResponseDto<UserResponseDto>> updateProfile(String email, UserProfileUpdateDto body) {
+    if (email == null || email.isBlank()) {
+      return ResponseDto.badRequest(List.of("Email is required"));
+    }
+
+    UserEntity userEntity = this.userRepository.findByEmail(email).orElse(null);
+    if (userEntity == null) {
+      return ResponseDto.notFound("User not found");
+    }
+
+    if (body.getPhone() != null && !body.getPhone().equals(userEntity.getPhone())) {
+      if (this.userRepository.existsByPhone(body.getPhone())) {
+        return ResponseDto.badRequest(List.of("Phone already exists"));
+      }
+    }
+
+    if (body.getFullName() != null) {
+      userEntity.setFullName(body.getFullName());
+    }
+    if (body.getPhone() != null) {
+      userEntity.setPhone(body.getPhone());
+    }
+    if (!ValidationUtil.isNullOrEmpty(body.getPassword())) {
+      userEntity.setPassword(passwordEncoder.encode(body.getPassword()));
+    }
 
     userEntity = this.userRepository.save(userEntity);
     UserResponseDto userResponseDto = this.userConverter.toUserResponseDto(userEntity);

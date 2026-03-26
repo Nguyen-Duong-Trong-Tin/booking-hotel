@@ -19,6 +19,7 @@ public class BookingFindDto {
   private LocalDate checkIn;
   private LocalDate checkOut;
   private BookingStatus status;
+  private String paymentMethod;
   private Long userId;
   private Long roomId;
 }

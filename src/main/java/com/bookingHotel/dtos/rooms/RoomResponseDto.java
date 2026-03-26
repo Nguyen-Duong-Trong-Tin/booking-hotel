@@ -23,6 +23,8 @@ public class RoomResponseDto {
   private String roomNumber;
   private BigDecimal price;
   private Integer capacity;
+  private Double latitude;
+  private Double longitude;
   private RoomStatus status;
   private CategoryResponseDto category;
   private List<RoomImageResponseDto> roomImages;

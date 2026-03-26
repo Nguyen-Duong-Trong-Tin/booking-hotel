@@ -25,6 +25,8 @@ public class BookingUpdateDto {
 
   private BookingStatus status;
 
+  private String paymentMethod;
+
   private Long userId;
 
   private Long roomId;
