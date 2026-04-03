@@ -38,7 +38,7 @@ public class RoomController {
   }
 
   @PatchMapping("/{id}")
-  @Auth({ "Admin", "Employee" })
+  @Auth({ "Admin", "Employee", "User" })
   public ResponseEntity<ResponseDto<RoomResponseDto>> update(@PathVariable Long id,
       @Valid @RequestBody RoomUpdateDto roomUpdateDto) {
     return this.roomService.update(id, roomUpdateDto);
