@@ -4,6 +4,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 import java.util.List;
+import java.util.Collection;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 
